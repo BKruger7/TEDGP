@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAZINGLY ACCURATE PERSONALITY TEST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        button, input {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #celebration, #result, #disputeOptions, #explanation, #finalOptions {
+            display: none;
+            margin-top: 20px;
+        }
+        #result {
+            font-size: 36px;
+            color: red;
+        }
+        #loading-bar {
+            width: 0;
+            height: 5px;
+            background-color: green;
+            margin: 20px auto;
+            display: none;
+            animation: load 2s linear forwards;
+        }
+        @keyframes load {
+            to {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey Edward</h1>
+    <h2>PUSH THE FUCKING BUTTON</h2>
+    <button id="startButton">The Button</button>
+
+    <div id="numberPrompt" style="display:none;">
+        <p>Okay Ted, Choose a number between 1 and 10 and we will tell you something about yourself based on your choice.</p>
+        <input id="numberInput" type="number" min="1" max="10" placeholder="Enter a number">
+        <button id="submitNumber">Submit</button>
+    </div>
+
+    <div id="celebration">🎉🎉 Woohoo! 🎉🎉</div>
+    <div id="loading-bar"></div>
+    <div id="result"></div>
+
+    <div id="disputeOptions">
+        <p>Do you dispute this finding?</p>
+        <button id="disputeYes">Yes</button>
+        <button id="disputeNo">No</button>
+    </div>
+
+    <div id="explanation">
+        <p>Please explain why:</p>
+        <textarea id="userExplanation" rows="4" cols="50" placeholder="Type your explanation here..."></textarea>
+        <button id="submitExplanation">Submit</button>
+    </div>
+
+    <div id="finalOptions">
+        <p>We have evaluated your submission and found the problem: "It's because you are gay."</p>
+        <button id="acceptFinding">Accept Finding</button>
+        <button id="sendVirus">Send virus to 0847736971</button>
+    </div>
+
+    <audio id="audio" src="https://www.myinstants.com/media/sounds/why-are-you-gay.mp3" preload="auto"></audio>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const numberPrompt = document.getElementById('numberPrompt');
+        const numberInput = document.getElementById('numberInput');
+        const submitNumber = document.getElementById('submitNumber');
+        const celebration = document.getElementById('celebration');
+        const loadingBar = document.getElementById('loading-bar');
+        const result = document.getElementById('result');
+        const disputeOptions = document.getElementById('disputeOptions');
+        const disputeYes = document.getElementById('disputeYes');
+        const disputeNo = document.getElementById('disputeNo');
+        const explanation = document.getElementById('explanation');
+        const userExplanation = document.getElementById('userExplanation');
+        const submitExplanation = document.getElementById('submitExplanation');
+        const finalOptions = document.getElementById('finalOptions');
+        const audio = document.getElementById('audio');
+
+        startButton.addEventListener('click', () => {
+            startButton.style.display = 'none';
+            numberPrompt.style.display = 'block';
+        });
+
+        submitNumber.addEventListener('click', () => {
+            const number = parseInt(numberInput.value);
+            if (number >= 1 && number <= 10) {
+                numberPrompt.style.display = 'none';
+                celebration.style.display = 'block';
+                loadingBar.style.display = 'block';
+
+                setTimeout(() => {
+                    celebration.innerText = "Based on your selection...";
+
+                    setTimeout(() => {
+                        result.innerText = "YOU'RE";
+                        result.style.display = 'block';
+
+                        setTimeout(() => {
+                            result.innerText = "a POES";
+                            celebration.innerText = "🎉🎉 Congratulations! 🎉🎉";
+                            disputeOptions.style.display = 'block';
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+            } else {
+                alert('Please enter a number between 1 and 10.');
+            }
+        });
+
+        disputeYes.addEventListener('click', () => {
+            disputeOptions.style.display = 'none';
+            explanation.style.display = 'block';
+        });
+
+        disputeNo.addEventListener('click', () => {
+            disputeOptions.style.display = 'none';
+            alert("At least you aren't retarded.");
+        });
+
+        submitExplanation.addEventListener('click', () => {
+            explanation.style.display = 'none';
+            finalOptions.style.display = 'block';
+        });
+
+        document.getElementById('acceptFinding').addEventListener('click', () => {
+            audio.play();
+        });
+
+        document.getElementById('sendVirus').addEventListener('click', () => {
+            audio.play();
+        });
+    </script>
+</body>
+</html>
