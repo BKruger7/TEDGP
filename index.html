@@ -42,12 +42,22 @@
     </style>
 </head>
 <body>
-    <h1>Hey Edward</h1>
-    <h2>PUSH THE FUCKING BUTTON</h2>
-    <button id="startButton">The Button</button>
+    <h1>Welcome!</h1>
+    <h2>Please insert your name and phone number:</h2>
+    <div id="userDetails">
+        <input id="nameInput" type="text" placeholder="Enter your name">
+        <input id="phoneInput" type="tel" placeholder="Enter your phone number">
+        <button id="submitDetails">Submit</button>
+    </div>
+
+    <div id="startSection" style="display:none;">
+        <h1>Hey <span id="userName"></span></h1>
+        <h2>PUSH THE FUCKING BUTTON</h2>
+        <button id="startButton">The Button</button>
+    </div>
 
     <div id="numberPrompt" style="display:none;">
-        <p>Okay Ted, Choose a number between 1 and 10 and we will tell you something about yourself based on your choice.</p>
+        <p>Okay <span id="userName"></span>, Choose a number between 1 and 10 and we will tell you something about yourself based on your choice.</p>
         <input id="numberInput" type="number" min="1" max="10" placeholder="Enter a number">
         <button id="submitNumber">Submit</button>
     </div>
@@ -71,12 +81,19 @@
     <div id="finalOptions">
         <p>We have evaluated your submission and found the problem: "It's because you are gay."</p>
         <button id="acceptFinding">Accept Finding</button>
-        <button id="sendVirus">Send virus to 0847736971</button>
+        <button id="sendVirus">Send virus to <span id="userPhone"></span></button>
     </div>
 
     <audio id="audio" src="https://www.myinstants.com/media/sounds/why-are-you-gay.mp3" preload="auto"></audio>
 
     <script>
+        const userDetails = document.getElementById('userDetails');
+        const nameInput = document.getElementById('nameInput');
+        const phoneInput = document.getElementById('phoneInput');
+        const submitDetails = document.getElementById('submitDetails');
+        const userNameSpan = document.getElementById('userName');
+        const userPhoneSpan = document.getElementById('userPhone');
+        const startSection = document.getElementById('startSection');
         const startButton = document.getElementById('startButton');
         const numberPrompt = document.getElementById('numberPrompt');
         const numberInput = document.getElementById('numberInput');
@@ -93,8 +110,22 @@
         const finalOptions = document.getElementById('finalOptions');
         const audio = document.getElementById('audio');
 
+        submitDetails.addEventListener('click', () => {
+            const userName = nameInput.value.trim();
+            const userPhone = phoneInput.value.trim();
+
+            if (userName && userPhone) {
+                userNameSpan.textContent = userName;
+                userPhoneSpan.textContent = userPhone;
+                userDetails.style.display = 'none';
+                startSection.style.display = 'block';
+            } else {
+                alert('Please enter both your name and phone number.');
+            }
+        });
+
         startButton.addEventListener('click', () => {
-            startButton.style.display = 'none';
+            startSection.style.display = 'none';
             numberPrompt.style.display = 'block';
         });
 
